@@ -1,11 +1,13 @@
 #include <stdio.h>
 
-	/**
-	* main - this function printf a string.
-	* puts : this is a function that prints the string.
-	*/
+/**
+ * main - prints the phrase "Programming is like building a multilingual puzzle
+ * Return: 0 if exited properly, non-zero otherwise
+ */
 int main(void)
 {
-	puts("\"Programming is like building a multilingual puzzle");
+	char aa[] = "\"Programming is like building a multilingual puzzle"
+
+	puts(aa);
 	return (0);
 }
