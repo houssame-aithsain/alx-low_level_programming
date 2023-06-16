@@ -22,12 +22,11 @@ int main(void)
 			d = i + 1;
 			while (d < 10)
 			{
-				if (i == d)
-					d++;
 				putchar(a + 48);
 				putchar(i + 48);
 				putchar(d + 48);
-				if (a != 7 || i != 8 || d != 9)
+				if (a == 7 && i == 8 && d == 9)
+					break;
 				putchar(',');
 				putchar(' ');
 				d++;
