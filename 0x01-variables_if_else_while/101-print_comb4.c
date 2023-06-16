@@ -22,6 +22,8 @@ int main(void)
 		{
 			while (d <= 9)
 			{
+				if (i == d)
+					d++;
 				putchar(a + 48);
 				putchar(i + 48);
 				putchar(d + 48);
