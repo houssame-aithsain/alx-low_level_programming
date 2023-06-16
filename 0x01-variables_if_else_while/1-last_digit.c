@@ -7,12 +7,12 @@
 	* @n: is a number
 	* Return: if 0 "return 0"
 */
-int print_last(int n)
+void print_last(int n)
 {
 	if (!(n % 10))
 	{
 		printf("Last digit of %d is %d and is 0", n, (n % 10));
-		return (0);
+		return;
 	}
 	if ((n % 10) > 5)
 		printf("Last digit of %d is %d and is greater than 5", n, (n % 10));
