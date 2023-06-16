@@ -14,13 +14,13 @@ int main(void)
 	int a;
 
 	a = 0;
-	i = 1;
-	d = 2;
-	while (a <= 7)
+	while (a < 8)
 	{
-		while (i <= 8)
+		i = a + 1;
+		while (i < 9)
 		{
-			while (d <= 9)
+			d = i + 1;
+			while (d < 10)
 			{
 				if (i == d)
 					d++;
@@ -33,10 +33,8 @@ int main(void)
 				d++;
 			}
 			i++;
-			d = i;
 		}
 		a++;
-		i = a;
 	}
 	putchar('\n');
 	return (0);
