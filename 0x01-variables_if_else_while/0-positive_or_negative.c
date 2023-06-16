@@ -19,7 +19,7 @@ void check_and_print(int n)
 		printf("%d is positive\n", n);
 }
 
-/**
+/**	
  * main - the main function "that sent the number to the check function"
  * Return: return "0"
  */
