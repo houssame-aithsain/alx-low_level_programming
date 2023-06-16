@@ -14,14 +14,12 @@ int main(void)
 	int a;
 
 	a = 0;
-	i = 0;
-	d = 1;
-	while (a <= 9)
+	i = 1;
+	d = 2;
+	while (a <= 7)
 	{
-		i = a + 1;
-		while (i <= 9)
+		while (i <= 8)
 		{
-			d = i + 1;
 			while(d <= 9)
 			{
 				putchar(a + 48);
@@ -33,8 +31,10 @@ int main(void)
 				d++;
 			}
 			i++;
+			d = i;
 		}
 		a++;
+		i = a;
 	}
 	putchar('\n');
 	return (0);
