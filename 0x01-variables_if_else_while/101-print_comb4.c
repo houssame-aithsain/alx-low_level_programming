@@ -14,37 +14,27 @@ int main(void)
 	int a;
 
 	a = 0;
-	i = 1;
-	d = 2;
-	while (a < 9)
+	i = 0;
+	d = 1;
+	while (a <= 9)
 	{
-		if (d == 9)
+		i = a + 1;
+		while (i <= 9)
 		{
-			if (i == a)
-				i++;
-		}
-		if (d != i && a != i)
-		{
-			putchar(a + 48);
-			putchar(i + 48);
-			putchar(d + 48);
-			if (a != 7 || i != 8 || d != 9)
+			d = i + 1;
+			while(d <= 9)
 			{
+				putchar(a + 48);
+				putchar(i + 48);
+				putchar(d + 48);
+				if (a != 7 || i != 8 || d != 9)
 				putchar(',');
 				putchar(' ');
+				d++;
 			}
-		}
-		if (d == 9)
-		{
-			if (i == 9)
-			{
-				i = a;
-				a++;
-			}
-			d = i;
 			i++;
 		}
-		d++;
+		a++;
 	}
 	putchar('\n');
 	return (0);
