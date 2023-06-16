@@ -23,7 +23,7 @@ int main(void)
 			if (i == a)
 				i++;
 		}
-		if (d != i)
+		if (d != i && a != i)
 		{
 			putchar(a + 48);
 			putchar(i + 48);
