@@ -20,7 +20,7 @@ int main(void)
 	{
 		while (i <= 8)
 		{
-			while(d <= 9)
+			while (d <= 9)
 			{
 				putchar(a + 48);
 				putchar(i + 48);
