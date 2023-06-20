@@ -5,32 +5,24 @@
 */
 void jack_bauer(void)
 {
-	int m, ml, s, sl;
+	int hour = 0;
+	int minute = 0;
 
-	m = 0;
-	while (m <= 2)
+	while (hour < 24)
 	{
-		ml = 0;
-		while (ml <= 3)
+		while (minute < 60)
 		{
-			s = 0;
-			while (s <= 5)
-			{
-				sl = 0;
-				while (sl <= 9)
-				{
-					_putchar(m + 48);
-					_putchar(ml + 48);
-					_putchar(':');
-					_putchar(s + 48);
-					_putchar(sl + 48);
-					_putchar('\n');
-					sl++;
-				}
-				s++;
-			}
-			ml++;
+			_putchar((hour / 10) + '0');
+			_putchar((hour % 10) + '0');
+			_putchar(':');
+			_putchar((minute / 10) + '0');
+			_putchar((minute % 10) + '0');
+			_putchar('\n');
+
+			minute++;
 		}
-		m++;
+
+		minute = 0;
+		hour++;
 	}
 }
