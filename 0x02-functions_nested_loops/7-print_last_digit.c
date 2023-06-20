@@ -1,5 +1,5 @@
 #include "main.h"
-#include "stdio.h"
+
 /**
 	* print_last_digit - is the main "function"
 	* @num: var
