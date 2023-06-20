@@ -1,5 +1,5 @@
 #include "main.h"
-
+#include "stdio.h"
 /**
 	* print_last_digit - is the main "function"
 	* @num: var
@@ -7,12 +7,15 @@
 */
 int print_last_digit(int num)
 {
-	if (num < 0)
+	long n;
+
+	n = num;
+	if (n < 0)
 	{
-		num = num * -1;
-		_putchar((num % 10) + 48);
-		return (num % 10);
+		n = n * -1;
+		_putchar((n % 10) + 48);
+		return (n % 10);
 	}
-	_putchar((num % 10) + 48);
-	return (num % 10);
+	_putchar((n % 10) + 48);
+	return (n % 10);
 }
