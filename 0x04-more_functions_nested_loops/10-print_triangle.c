@@ -9,8 +9,10 @@ void print_triangle(int size)
 	int i, j, spaces;
 
 	if (size <= 0)
+	{
 		_putchar('\n');
 		return;
+	}
 	for (i = 0; i < size; i++)
 	{
 		spaces = size - i - 1;
