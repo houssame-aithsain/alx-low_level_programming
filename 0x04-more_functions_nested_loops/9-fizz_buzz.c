@@ -12,13 +12,14 @@ int main(void)
 	while (i <= 100)
 	{
 		if (!(i % 3) && !(i % 5))
-			printf("Fizz Buzz\n");
+			printf(" Fizz Buzz");
 		else if (!(i % 3))
-			printf("Fizz\n");
+			printf(" Fizz");
 		else if (!(i % 5))
-			printf("Buzz\n");
+			printf(" Buzz");
 		else
-			printf("%d\n", i);
+			printf(" %d", i);
 		i++;
 	}
+	printf("\n");
 }
