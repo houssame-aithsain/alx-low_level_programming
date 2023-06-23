@@ -12,7 +12,7 @@ int main(void)
 	while (i <= 100)
 	{
 		if (!(i % 3) && !(i % 5))
-			printf("Fizz Buzz");
+			printf("FizzBuzz");
 		else if (!(i % 3))
 			printf("Fizz");
 		else if (!(i % 5))
