@@ -3,22 +3,33 @@
 /**
  * puts_half - Prints the second half of a string.
  * @str: Pointer to the string.
+ *
+ * Description: This function takes a string as input and prints the second
+ *              half of the string. It calculates the length of the string
+ *              by counting the number of characters until the null terminator.
+ *              Then it determines the starting index `i` for printing the
+ *              second half based on whether the length is odd or even. If the
+ *              length is odd, `i` is set to len / 2, otherwise, it is set to
+ *              (len - 1) / 2. Finally, it uses a loop to print the characters
+ *              from index `i` until the end of the string.
  */
 void puts_half(char *str)
 {
-	int length = 0;
+	int len;
 	int i;
 
-	while (str[length] != '\0')
-		length++;
-
-	if (length % 2 == 1)
-		length = (length - 1) / 2;
+	len = 0;
+	i = 0;
+	while (str && str[len])
+		len++;
+	if (!(len % 2))
+	{
+		for (i = len / 2; str[i]; i++)
+			_putchar(str[i]);
+	}
 	else
-		length /= 2;
-
-	for (i = length; str[i] != '\0'; i++)
-		_putchar(str[i]);
-
-	_putchar('\n');
+	{
+		for (i = (len - 1) / 2; i < len - 1; i++)
+			_putchar(str[i + 1]);
+	}
 }
