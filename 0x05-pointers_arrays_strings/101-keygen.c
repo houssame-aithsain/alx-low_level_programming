@@ -7,24 +7,22 @@
  */
 int main(void)
 {
-	int i;
 	int passwordLength = 15;
-	char *password = malloc((passwordLength + 1) * sizeof(char));
+	char password[passwordLength + 1];
+	int i, sum, randomChar;
 
-	srand(time(0));
-	for (i = 0; i < passwordLength; i++)
+	sum = 0;
+	srand(time(NULL));
+	for (i = 0; i < passwordLength - 1; i++)
 	{
-		int randomCharType = rand() % 3;
-
-		if (randomCharType == 0)
-			password[i] = 'A' + rand() % 26;
-		else if (randomCharType == 1)
-			password[i] = 'a' + rand() % 26;
-		else
-			password[i] = '0' + rand() % 10;
+		randomChar = rand() % 94 + 33;
+		password[i] = randomChar;
+		sum += randomChar;
+		putchar(randomChar);
 	}
-	password[passwordLength] = 0;
-	printf("%s\n", password);
-	free(password);
+	password[passwordLength - 1] = 2772 - sum;
+	putchar(2772 - sum);
+	password[passwordLength] = '\0';
+	putchar('\n');
 	return (0);
 }
