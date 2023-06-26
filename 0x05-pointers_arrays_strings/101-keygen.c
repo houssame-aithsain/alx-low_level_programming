@@ -8,7 +8,7 @@
 int main(void)
 {
 	int i;
-	int passwordLength = 12;
+	int passwordLength = 15;
 	char *password = malloc((passwordLength + 1) * sizeof(char));
 
 	srand(time(0));
