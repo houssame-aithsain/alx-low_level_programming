@@ -14,7 +14,7 @@ int main(void)
 	int g;
 
 	s = 0;
-	srad(time(0));
+	srand(time(0));
 	for (i = 0; i < 200; i++)
 	{
 		pass[i] = rand() % 78;
