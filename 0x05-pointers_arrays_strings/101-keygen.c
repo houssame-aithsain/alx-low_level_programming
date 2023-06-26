@@ -8,7 +8,7 @@
 int main(void)
 {
 	int passwordLength = 15;
-	char password[passwordLength + 1];
+	char *password = malloc(sizeof(char) * passwordLength + 1);
 	int i, sum, n;
 
 	sum = 0;
@@ -22,7 +22,8 @@ int main(void)
 	n = 2772 - sum;
 	password[passwordLength - 1] = n + '0';
 	putchar(n + '0');
-	password[passwordLength] = '\0';
+	password[passwordLength] = 0;
 	putchar('\n');
+	free(password);
 	return (0);
 }
