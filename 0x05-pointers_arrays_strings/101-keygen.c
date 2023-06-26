@@ -5,25 +5,28 @@
  *
  * Return: Always 0
  */
+
 int main(void)
 {
-	int passwordLength = 15;
-	char *password = malloc(sizeof(char) * passwordLength + 1);
-	int i, sum, n;
+	int pass[200];
+	int i;
+	int s;
+	int g;
 
-	sum = 0;
-	srand(time(NULL));
-	for (i = 0; i < passwordLength - 1; i++)
+	s = 0;
+	srad(time(0));
+	for (i = 0; i < 200; i++)
 	{
-		password[i] = rand() % 78 + '0';
-		sum += password[i] - '0';
-		putchar(password[i]);
+		pass[i] = rand() % 78;
+		s += (pass[i] + 48);
+		putchar(pass[i] + 48);
+		if ((2772 - s) - 48 < 78)
+		{
+			g = 2772 - s - 48;
+			s += g;
+			putchar(g + 48);
+			break;
+		}
 	}
-	n = 2772 - sum;
-	password[passwordLength - 1] = n + '0';
-	putchar(n + '0');
-	password[passwordLength] = 0;
-	putchar('\n');
-	free(password);
 	return (0);
 }
