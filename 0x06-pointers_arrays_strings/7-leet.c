@@ -10,23 +10,16 @@ char *leet(char *str)
 {
 	int i;
 	int j;
-	char leet_letters[] = "aAeEoOtTlL";
-	char leet_numbers[] = "4433007711";
+	char leet_chars[] = "aAeEoOtTlL";
+	char leet_nums[] = "4433007711";
 
-	i = 0;
-	while (str[i])
+	for (i = 0; str[i] != '\0'; i++)
 	{
-		j = 0;
-		while (leet_letters[j])
+		for (j = 0; leet_chars[j] != '\0'; j++)
 		{
-			if (str[i] == leet_letters[j])
-			{
-				str[i] = leet_numbers[j];
-				break;
-			}
-			j++;
+			if (str[i] == leet_chars[j])
+				str[i] = leet_nums[j];
 		}
-		i++;
 	}
 	return (str);
 }
