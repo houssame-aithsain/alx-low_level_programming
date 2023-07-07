@@ -4,10 +4,14 @@ SRC=$(ls | grep "\.c" | tr '\n' ' ')
 
 FLAGS='-Wall -Werror -Wextra -pedantic -std=gnu89'
 
-NAME='ibmy.a'
+NAME='liball.a'
 
 CC='gcc'
 
-OBJ=$($CC $FLAGS -c $SRC)
+OBJ=""
+for file in $SRC; do
+  $CC $FLAGS -c "$file"
+  OBJ+=" ${file%.c}.o"
+done
 
-ar rcs $NAME $OBJ
+ar rcs "$NAME" $OBJ
