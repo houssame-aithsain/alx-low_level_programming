@@ -1,17 +1,10 @@
 #!/bin/bash
 
-SRC=$(ls | grep "\.c" | tr '\n' ' ')
+# Compile each .c file into .o object files
+gcc -Wall -Werror -Wextra -pedantic -std=gnu89 -c *.c
 
-FLAGS='-Wall -Werror -Wextra -pedantic -std=gnu89'
+# Create the static library from the object files
+ar rcs liball.a *.o
 
-NAME='liball.a'
-
-CC='gcc'
-
-OBJ=""
-for file in $SRC; do
-  $CC $FLAGS -c "$file"
-  OBJ+=" ${file%.c}.o"
-done
-
-ar rcs "$NAME" $OBJ
+# Clean up the object files
+rm *.o
