@@ -6,9 +6,9 @@
  *
  * Return: The length of the string.
  */
-size_t	ft_strlen(const	char *s)
+int	ft_strlen(const	char *s)
 {
-	size_t	i;
+	int	i;
 
 	i = 0;
 	while (s[i])
@@ -49,10 +49,10 @@ char	*ft_strdup(const char *s1)
  * @flag: swetch the function ps.
  * Return: The number of substrings in the string.
  */
-size_t	ft_countit(char const *s, char c, int flag)
+int	ft_countit(char const *s, char c, int flag)
 {
-	size_t	i;
-	size_t	j;
+	int	i;
+	int	j;
 
 	i = 0;
 	j = 0;
@@ -80,11 +80,11 @@ size_t	ft_countit(char const *s, char c, int flag)
  *
  * Return: The extracted substring.
  */
-char	*ft_substr(char const *s, unsigned int start, size_t len)
+char	*ft_substr(char const *s, unsigned int start, int len)
 {
 	char	*arr;
-	size_t	i;
-	size_t	j;
+	int	i;
+	int	j;
 
 	i = 0;
 	j = start;
@@ -119,9 +119,9 @@ char	*ft_substr(char const *s, unsigned int start, size_t len)
 char **strtow(char *str)
 {
 	char	**arr;
-	size_t	i;
-	size_t	j;
-	size_t	len;
+	int	i;
+	int	j;
+	int	len;
 
 	i = 0;
 	j = ft_countit(str, ' ', 0);
