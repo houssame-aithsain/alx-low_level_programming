@@ -79,7 +79,7 @@ char	*ft_substr(char const *s, unsigned int start, size_t len)
 	if (start >= ft_strlen(s))
 	{
 		arr = malloc(2);
-		arr[0] = "";
+		arr[0] = 0;
 		arr[1] = 0;
 		return (arr);
 	}
