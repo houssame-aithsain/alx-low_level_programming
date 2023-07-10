@@ -95,7 +95,7 @@ char **strtow(char *str)
 	int j = ft_countit(str, ' ', 0);
 	int len;
 
-	if (!ft_strlen(str) || j)
+	if (!ft_strlen(str) || !j)
 		return (NULL);
 	arr = malloc(sizeof(char *) * (j + 1));
 	if (!arr)
