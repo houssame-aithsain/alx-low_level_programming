@@ -67,7 +67,7 @@ char *_strcpy(char *dest, char *src)
  */
 char *argstostr(int ac, char **av)
 {
-	size_t j, i, b;
+	size_t i, b;
 	int in;
 	char *arr;
 
