@@ -6,100 +6,137 @@
  *
  * Return: The length of the string.
  */
-size_t ft_strlen(char *s)
+int ft_strlen(const char *s)
 {
-	size_t i;
+	int i = 0;
 
-	i = 0;
-	while (s && s[i])
+	while (s[i])
 		i++;
 	return (i);
 }
 
 /**
- * count_words - Counts the number of words in a string.
- * @str: The input string.
+ * ft_strdup - Duplicates a given string.
+ * @s1: The input string to be duplicated.
+ *
+ * Return: A pointer to the duplicated string,
+ * or NULL if memory allocation fails.
+ */
+char *ft_strdup(const char *s1)
+{
+	int i = 0;
+	char *s_malloc;
+	char *f_str;
+
+	f_str = (char *)s1;
+	i = ft_strlen(f_str);
+	s_malloc = (char *)malloc(sizeof(char) * (i + 1));
+	if (!s_malloc)
+		return (NULL);
+	strncpy(s_malloc, s1, i);
+	s_malloc[i] = '\0';
+	return (s_malloc);
+}
+
+/**
+ * ft_countit - Counts the number of substrings in a string based
+ * on a delimiter character.
+ * @s: The input string.
  * @c: The delimiter character.
- *
- * Return: The number of words.
+ * @flag: switch the function ps.
+ * Return: The number of substrings in the string.
  */
-static int count_words(const char *str, char c)
+int ft_countit(char const *s, char c, int flag)
 {
 	int i;
-	int trigger;
+	int j;
 
 	i = 0;
-	trigger = 0;
-	while (*str)
+	j = 0;
+	if (flag)
 	{
-		if (*str != c && trigger == 0)
-		{
-			trigger = 1;
+		i = 0;
+		while (s[i] && s[i] != c)
 			i++;
-		}
-		else if (*str == c)
-			trigger = 0;
-		str++;
+		return (i);
 	}
-	return (i);
+	while (s[i])
+	{
+		if (s[i] != c && (s[i + 1] == c || s[i + 1] == '\0'))
+			j++;
+		i++;
+	}
+	return (j);
 }
 
 /**
- * word_dup - Duplicates a word from a given string.
- * @str: The input string.
- * @start: The starting index of the word.
- * @finish: The ending index of the word.
+ * ft_substr - Extracts a substring from a given string.
+ * @s: The input string.
+ * @start: The starting index of the substring.
+ * @len: The length of the substring.
  *
- * Return: The duplicated word.
+ * Return: The extracted substring.
  */
-static char *word_dup(const char *str, int start, int finish)
+char *ft_substr(char const *s, int start, int len)
 {
-	char *word;
+	char *arr;
 	int i;
+	int j;
 
 	i = 0;
-	word = malloc((finish - start + 1) * sizeof(char));
-	while (start < finish)
-		word[i++] = str[start++];
-	word[i] = '\0';
-	return (word);
+	j = start;
+	if (start >= ft_strlen(s))
+		return (ft_strdup(""));
+	if (len > ft_strlen(s) - start)
+		len = ft_strlen(s) - start;
+	if (s[start] != '\0')
+	{
+		arr = malloc(len + 1);
+		if (!arr)
+			return (NULL);
+		i = 0;
+		while (len)
+		{
+			arr[i++] = s[j++];
+			len--;
+		}
+		arr[i] = '\0';
+		return (arr);
+	}
+	return (NULL);
 }
 
 /**
- * strtow - Splits a string into words.
+ * strtow - Splits a string into an array of substrings based
+ * on a delimiter character.
  * @str: The input string.
  *
- * Return: Pointer to an array of strings (words)
- * or NULL if str is NULL or empty.
+ * Return: The array of substrings.
  */
 char **strtow(char *str)
 {
-	size_t i;
-	size_t j;
-	int index;
-	char **split;
+	char **arr;
+	int i = 0;
+	int j = ft_countit(str, ' ', 0);
+	int len;
 
 	if (!ft_strlen(str))
-		return (0);
-	if (!str)
-		return (0);
-	split = malloc((count_words(str, ' ') + 1) * sizeof(char *));
-	if (!split)
-		return (0);
-	i = 0;
-	j = 0;
-	index = -1;
-	while (i <= ft_strlen(str))
+		return (NULL);
+	arr = malloc(sizeof(char *) * (j + 1));
+	if (!arr)
+		return (NULL);
+	while (*str)
 	{
-		if (str[i] != ' ' && index < 0)
-			index = i;
-		else if ((str[i] == ' ' || i == ft_strlen(str)) && index >= 0)
+		if (*str != ' ')
 		{
-			split[j++] = word_dup(str, index, i);
-			index = -1;
+			len = ft_countit(str, ' ', 1);
+			arr[i] = ft_substr(str, 0, len);
+			str += len;
+			i++;
 		}
-		i++;
+		else
+			str++;
 	}
-	split[j] = 0;
-	return (split);
+	arr[i] = NULL;
+	return (arr);
 }
