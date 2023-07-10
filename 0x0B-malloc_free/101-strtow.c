@@ -33,7 +33,9 @@ char *ft_strdup(const char *s1)
 	s_malloc = (char *)malloc(sizeof(char) * (i + 1));
 	if (!s_malloc)
 		return (NULL);
-	strncpy(s_malloc, s1, i);
+	i = -1;
+	while (++i < ft_strlen(s1))
+		s_malloc[i] = s1[i];
 	s_malloc[i] = '\0';
 	return (s_malloc);
 }
