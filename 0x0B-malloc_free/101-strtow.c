@@ -79,6 +79,8 @@ char **strtow(char *str)
 	int index;
 	char **split;
 
+	if (!ft_strlen(str))
+		return (0);
 	if (!str)
 		return (0);
 	split = malloc((count_words(str, ' ') + 1) * sizeof(char *));
