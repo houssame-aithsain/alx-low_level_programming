@@ -1,74 +1,68 @@
 #include "main.h"
 
 /**
- * count_words - Counts the number of words in a string.
- * @str: The input string.
+ * ft_strlen - Calculates the length of a string.
+ * @s: The input string.
  *
- * Return: The number of words.
+ * Return: The length of the string.
  */
-int count_words(char *str)
+size_t ft_strlen(char *s)
 {
-	int i, count;
+	size_t i;
 
 	i = 0;
-	count = 0;
-
-	while (str[i] != '\0')
-	{
-		if (str[i] != ' ' && (str[i + 1] == ' ' || str[i + 1] == '\0'))
-			count++;
+	while (s && s[i])
 		i++;
-	}
-
-	return (count);
+	return (i);
 }
 
 /**
- * allocate_words - Allocates memory for words and copies them.
+ * count_words - Counts the number of words in a string.
  * @str: The input string.
- * @words: The array of words to be filled.
- * @count: The number of words.
+ * @c: The delimiter character.
  *
- * Return: The array of words, or NULL if memory allocation fails.
+ * Return: The number of words.
  */
-char **allocate_words(char *str, char **words, int count)
+static int count_words(const char *str, char c)
 {
-	int i, j, k, len;
+	int i;
+	int trigger;
 
 	i = 0;
-	j = 0;
-
-	while (str[i] != '\0')
+	trigger = 0;
+	while (*str)
 	{
-		if (str[i] != ' ')
+		if (*str != c && trigger == 0)
 		{
-			len = 0;
-			k = i;
-
-			while (str[k] != ' ' && str[k] != '\0')
-			{
-				len++;
-				k++;
-			}
-
-			words[j] = malloc(sizeof(char) * (len + 1));
-			if (words[j] == NULL)
-				return (NULL);
-
-			for (k = 0; k < len; k++)
-				words[j][k] = str[i++];
-
-			words[j][k] = '\0';
-			j++;
-		}
-		else
-		{
+			trigger = 1;
 			i++;
 		}
+		else if (*str == c)
+			trigger = 0;
+		str++;
 	}
+	return (i);
+}
 
-	words[j] = NULL;
-	return (words);
+/**
+ * word_dup - Duplicates a word from a given string.
+ * @str: The input string.
+ * @start: The starting index of the word.
+ * @finish: The ending index of the word.
+ *
+ * Return: The duplicated word.
+ */
+static char *word_dup(const char *str, int start, int finish)
+{
+	char *word;
+	int i;
+
+	i = 0;
+	word = malloc((finish - start + 1) * sizeof(char));
+	while (start < finish)
+		word[i++] = str[start++];
+	word[i] = '\0';
+	return (word);
 }
 
 /**
@@ -80,15 +74,30 @@ char **allocate_words(char *str, char **words, int count)
  */
 char **strtow(char *str)
 {
-	if (str == NULL || *str == '\0')
-		return (NULL);
+	size_t i;
+	size_t j;
+	int index;
+	char **split;
 
-	int count = count_words(str);
-
-	char **words = malloc(sizeof(char *) * (count + 1));
-
-	if (words == NULL)
-		return (NULL);
-
-	return (allocate_words(str, words, count));
+	if (!str)
+		return (0);
+	split = malloc((count_words(str, ' ') + 1) * sizeof(char *));
+	if (!split)
+		return (0);
+	i = 0;
+	j = 0;
+	index = -1;
+	while (i <= ft_strlen(str))
+	{
+		if (str[i] != ' ' && index < 0)
+			index = i;
+		else if ((str[i] == ' ' || i == ft_strlen(str)) && index >= 0)
+		{
+			split[j++] = word_dup(str, index, i);
+			index = -1;
+		}
+		i++;
+	}
+	split[j] = 0;
+	return (split);
 }
