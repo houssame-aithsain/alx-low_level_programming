@@ -80,7 +80,7 @@ int	ft_countit(char const *s, char c, int flag)
  *
  * Return: The extracted substring.
  */
-char	*ft_substr(char const *s, unsigned int start, int len)
+char	*ft_substr(char const *s, int start, int len)
 {
 	char	*arr;
 	int	i;
