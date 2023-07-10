@@ -1,6 +1,26 @@
 #include "main.h"
 
 /**
+ * ft_free - Frees a 2D array of integers.
+ * @grid: The grid to be freed.
+ * @h: The height of the grid.
+ * @i: The width of the grid.
+ */
+void ft_free(int **grid, int h, int i)
+{
+	int w, x;
+
+	w = 0;
+	while (w < h)
+	{
+		x = 0;
+		while (x < i)
+			free(grid[w][x++]);
+		free(grid[w++]);
+	}
+}
+
+/**
  * alloc_grid - Allocates a 2D array of integers.
  * @width: The width of the grid.
  * @height: The height of the grid.
@@ -23,7 +43,10 @@ int **alloc_grid(int width, int height)
 	{
 		grid[i] = malloc(sizeof(int) * width);
 		if (!grid[i])
+		{
+			ft_free(grid, height, i);
 			return (NULL);
+		}
 		j = 0;
 		while (j < width)
 			grid[i][j++] = 0;
