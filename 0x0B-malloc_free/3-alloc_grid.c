@@ -27,28 +27,3 @@ int **alloc_grid(int width, int height)
 	}
 	return (grid);
 }
-
-/**
- * print_grid - Prints a grid of integers.
- * @grid: The grid to be printed.
- * @width: The width of the grid.
- * @height: The height of the grid.
- */
-void print_grid(int **grid, int width, int height)
-{
-	int w;
-	int h;
-
-	h = 0;
-	while (h < height)
-	{
-		w = 0;
-		while (w < width)
-		{
-			printf("%d ", grid[h][w]);
-			w++;
-		}
-		printf("\n");
-		h++;
-	}
-}
