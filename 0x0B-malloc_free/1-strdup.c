@@ -6,7 +6,7 @@
  *
  * Return: The length of the string.
  */
-size_t	ft_strlen(const	char *s)
+size_t	ft_strlen(char *s)
 {
 	size_t	i;
 
@@ -17,24 +17,43 @@ size_t	ft_strlen(const	char *s)
 }
 
 /**
- * ft_strdup - Duplicates a string.
+ * _strcpy - Copies the string pointed to by src to the buffer.
+ * @dest: Pointer to the destination buffer.
+ * @src: Pointer to the source string.
+ *
+ * Return: The pointer to dest.
+ */
+char *_strcpy(char *dest, char *src)
+{
+	int i;
+
+	i = 0;
+	while (src && src[i])
+	{
+		dest[i] = src[i];
+		i++;
+	}
+	dest[i] = 0;
+	return (dest);
+}
+
+/**
+ * _strdup - Duplicates a string.
  * @str: The string to be duplicated.
  *
  * Return: If successful, a pointer to the newly allocated duplicated string.
  *         If memory allocation fails or str is NULL, returns NULL.
  */
-char	*ft_strdup(const char *str)
+char	*_strdup(char *str)
 {
 	int		i;
 	char	*s_malloc;
-	char	*f_str;
 
-	f_str = (char *)str;
-	i = (int)ft_strlen(f_str);
+	i = (int)ft_strlen(str);
 	s_malloc = (char *)malloc(sizeof(char) * i + 1);
 	if (!s_malloc)
 		return (NULL);
-	s_malloc = ft_memcpy(s_malloc, str, i);
+	s_malloc = _strcpy(s_malloc, str);
 	s_malloc[i] = 0;
 	return (s_malloc);
 }
