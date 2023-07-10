@@ -17,40 +17,50 @@ size_t	ft_strlen(const	char *s)
 }
 
 /**
- * ft_count_c - Counts the number of characters until a specified
- * character is encountered.
- * @s: The input string.
- * @c: The specified character.
+ * ft_strdup - Duplicates a given string.
+ * @s1: The input string to be duplicated.
  *
- * Return: The number of characters until the specified
- * character is encountered.
+ * Return: A pointer to the duplicated string,
+ * or NULL if memory allocation fails.
  */
-size_t	ft_count_c(char *s, char c)
+char	*ft_strdup(const char *s1)
 {
-	size_t	i;
+	int		i;
+	char	*s_malloc;
+	char	*f_str;
 
-	i = 0;
-	while (s[i] && s[i] != c)
-		i++;
-	return (i);
+	f_str = (char *)s1;
+	i = (int)ft_strlen(f_str);
+	s_malloc = (char *)malloc(sizeof(char) * i + 1);
+	if (!s_malloc)
+		return (NULL);
+	s_malloc = ft_memcpy(s_malloc, s1, i);
+	s_malloc[i] = 0;
+	return (s_malloc);
 }
-
 
 /**
  * ft_countit - Counts the number of substrings in a string based
  * on a delimiter character.
  * @s: The input string.
  * @c: The delimiter character.
- *
+ * @flag: swetch the function ps.
  * Return: The number of substrings in the string.
  */
-size_t	ft_countit(char const *s, char c)
+size_t	ft_countit(char const *s, char c, int flag)
 {
 	size_t	i;
 	size_t	j;
 
 	i = 0;
 	j = 0;
+	if (flag)
+	{
+		i = 0;
+		while (s[i] && s[i] != c)
+			i++;
+		return (i);
+	}
 	while (s[i])
 	{
 		if (s[i] != c && (s[i + 1] == c || s[i + 1] == 0))
@@ -77,12 +87,7 @@ char	*ft_substr(char const *s, unsigned int start, size_t len)
 	i = 0;
 	j = start;
 	if (start >= ft_strlen(s))
-	{
-		arr = malloc(2);
-		arr[0] = 0;
-		arr[1] = 0;
-		return (arr);
-	}
+		return (ft_strdup(""));
 	if (len > ft_strlen(s) - start)
 		len = ft_strlen(s) - start;
 	if (s[start] != 0)
@@ -117,7 +122,7 @@ char **strtow(char *str)
 	size_t	len;
 
 	i = 0;
-	j = ft_countit(str, ' ');
+	j = ft_countit(str, ' ', 0);
 	arr = malloc(sizeof(char *) * (j + 1));
 	if (!arr)
 		return (0);
@@ -125,7 +130,7 @@ char **strtow(char *str)
 	{
 		if (*str != ' ')
 		{
-			len = ft_count_c(str, ' ');
+			len = ft_countit(str, ' ', 1);
 			arr[i] = ft_substr(str, 0, len);
 			str += len;
 			i++;
