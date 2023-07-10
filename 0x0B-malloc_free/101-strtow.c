@@ -6,14 +6,13 @@
  *
  * Return: The length of the string.
  */
-int	ft_strlen(const	char *s)
+int ft_strlen(const char *s)
 {
-	int	i;
+    int i = 0;
 
-	i = 0;
-	while (s[i])
-		i++;
-	return (i);
+    while (s[i])
+        i++;
+    return i;
 }
 
 /**
@@ -23,22 +22,20 @@ int	ft_strlen(const	char *s)
  * Return: A pointer to the duplicated string,
  * or NULL if memory allocation fails.
  */
-char	*ft_strdup(const char *s1)
+char *ft_strdup(const char *s1)
 {
-	int		i;
-	char	*s_malloc;
-	char	*f_str;
+    int i = 0;
+    char *s_malloc;
+    char *f_str;
 
-	f_str = (char *)s1;
-	i = (int)ft_strlen(f_str);
-	s_malloc = (char *)malloc(sizeof(char) * i + 1);
-	if (!s_malloc)
-		return (NULL);
-	i = -1;
-	while (++i < ft_strlen(s1))
-		s_malloc[i] = s1[i];
-	s_malloc[i] = 0;
-	return (s_malloc);
+    f_str = (char *)s1;
+    i = ft_strlen(f_str);
+    s_malloc = (char *)malloc(sizeof(char) * (i + 1));
+    if (!s_malloc)
+        return NULL;
+    strncpy(s_malloc, s1, i);
+    s_malloc[i] = '\0';
+    return s_malloc;
 }
 
 /**
@@ -46,30 +43,30 @@ char	*ft_strdup(const char *s1)
  * on a delimiter character.
  * @s: The input string.
  * @c: The delimiter character.
- * @flag: swetch the function ps.
+ * @flag: switch the function ps.
  * Return: The number of substrings in the string.
  */
-int	ft_countit(char const *s, char c, int flag)
+int ft_countit(char const *s, char c, int flag)
 {
-	int	i;
-	int	j;
+    int i;
+    int j;
 
-	i = 0;
-	j = 0;
-	if (flag)
-	{
-		i = 0;
-		while (s[i] && s[i] != c)
-			i++;
-		return (i);
-	}
-	while (s[i])
-	{
-		if (s[i] != c && (s[i + 1] == c || s[i + 1] == 0))
-			j++;
-		i++;
-	}
-	return (j);
+    i = 0;
+    j = 0;
+    if (flag)
+    {
+        i = 0;
+        while (s[i] && s[i] != c)
+            i++;
+        return i;
+    }
+    while (s[i])
+    {
+        if (s[i] != c && (s[i + 1] == c || s[i + 1] == '\0'))
+            j++;
+        i++;
+    }
+    return j;
 }
 
 /**
@@ -80,33 +77,33 @@ int	ft_countit(char const *s, char c, int flag)
  *
  * Return: The extracted substring.
  */
-char	*ft_substr(char const *s, int start, int len)
+char *ft_substr(char const *s, int start, int len)
 {
-	char	*arr;
-	int	i;
-	int	j;
+    char *arr;
+    int i;
+    int j;
 
-	i = 0;
-	j = start;
-	if (start >= ft_strlen(s))
-		return (ft_strdup(""));
-	if (len > ft_strlen(s) - start)
-		len = ft_strlen(s) - start;
-	if (s[start] != 0)
-	{
-		arr = malloc(len + 1);
-		if (!arr)
-			return (0);
-		i = 0;
-		while (len)
-		{
-			arr[i++] = s[j++];
-			len--;
-		}
-		arr[i] = 0;
-		return (arr);
-	}
-	return (0);
+    i = 0;
+    j = start;
+    if (start >= ft_strlen(s))
+        return ft_strdup("");
+    if (len > ft_strlen(s) - start)
+        len = ft_strlen(s) - start;
+    if (s[start] != '\0')
+    {
+        arr = malloc(len + 1);
+        if (!arr)
+            return NULL;
+        i = 0;
+        while (len)
+        {
+            arr[i++] = s[j++];
+            len--;
+        }
+        arr[i] = '\0';
+        return arr;
+    }
+    return NULL;
 }
 
 /**
@@ -118,28 +115,26 @@ char	*ft_substr(char const *s, int start, int len)
  */
 char **strtow(char *str)
 {
-	char	**arr;
-	int	i;
-	int	j;
-	int	len;
+    char **arr;
+    int i = 0;
+    int j = ft_countit(str, ' ', 0);
+    int len;
 
-	i = 0;
-	j = ft_countit(str, ' ', 0);
-	arr = malloc(sizeof(char *) * (j + 1));
-	if (!arr)
-		return (0);
-	while (*str)
-	{
-		if (*str != ' ')
-		{
-			len = ft_countit(str, ' ', 1);
-			arr[i] = ft_substr(str, 0, len);
-			str += len;
-			i++;
-		}
-		else
-			str++;
-	}
-	arr[i] = 0;
-	return (arr);
+    arr = malloc(sizeof(char *) * (j + 1));
+    if (!arr)
+        return NULL;
+    while (*str)
+    {
+        if (*str != ' ')
+        {
+            len = ft_countit(str, ' ', 1);
+            arr[i] = ft_substr(str, 0, len);
+            str += len;
+            i++;
+        }
+        else
+            str++;
+    }
+    arr[i] = NULL;
+    return arr;
 }
