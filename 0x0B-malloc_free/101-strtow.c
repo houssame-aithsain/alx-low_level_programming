@@ -76,6 +76,13 @@ char	*ft_substr(char const *s, unsigned int start, size_t len)
 
 	i = 0;
 	j = start;
+	if (start >= ft_strlen(s))
+	{
+		arr = malloc(2);
+		arr[0] = "";
+		arr[1] = 0;
+		return (arr);
+	}
 	if (len > ft_strlen(s) - start)
 		len = ft_strlen(s) - start;
 	if (s[start] != 0)
