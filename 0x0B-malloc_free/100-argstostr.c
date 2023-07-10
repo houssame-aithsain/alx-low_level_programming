@@ -77,17 +77,15 @@ char *argstostr(int ac, char **av)
 	arr = malloc(ft_p_strlen(av) + ac + 1);
 	if (!arr)
 		return (NULL);
-	in = 1;
-	arr[0] = '\0';
-	while (in < ac)
+	in = 0;
+	arr[0] = 0;
+	while (++in < ac)
 	{
 		i = 0;
-		j = ft_strlen(av[in]);
 		b = ft_strlen(arr);
-		while (i < j)
+		while (i < ft_strlen(av[in]))
 			arr[b++] = av[in][i++];
 		arr[b++] = '\n';
-		in++;
 	}
 	arr[b] = 0;
 	return (arr);
