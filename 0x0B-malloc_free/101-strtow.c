@@ -1,140 +1,94 @@
 #include "main.h"
 
 /**
- * ft_strlen - Calculates the length of a string.
- * @s: The input string.
- *
- * Return: The length of the string.
- */
-int ft_strlen(const char *s)
-{
-    int i = 0;
-
-    while (s[i])
-        i++;
-    return i;
-}
-
-/**
- * ft_strdup - Duplicates a given string.
- * @s1: The input string to be duplicated.
- *
- * Return: A pointer to the duplicated string,
- * or NULL if memory allocation fails.
- */
-char *ft_strdup(const char *s1)
-{
-    int i = 0;
-    char *s_malloc;
-    char *f_str;
-
-    f_str = (char *)s1;
-    i = ft_strlen(f_str);
-    s_malloc = (char *)malloc(sizeof(char) * (i + 1));
-    if (!s_malloc)
-        return NULL;
-    strncpy(s_malloc, s1, i);
-    s_malloc[i] = '\0';
-    return s_malloc;
-}
-
-/**
- * ft_countit - Counts the number of substrings in a string based
- * on a delimiter character.
- * @s: The input string.
- * @c: The delimiter character.
- * @flag: switch the function ps.
- * Return: The number of substrings in the string.
- */
-int ft_countit(char const *s, char c, int flag)
-{
-    int i;
-    int j;
-
-    i = 0;
-    j = 0;
-    if (flag)
-    {
-        i = 0;
-        while (s[i] && s[i] != c)
-            i++;
-        return i;
-    }
-    while (s[i])
-    {
-        if (s[i] != c && (s[i + 1] == c || s[i + 1] == '\0'))
-            j++;
-        i++;
-    }
-    return j;
-}
-
-/**
- * ft_substr - Extracts a substring from a given string.
- * @s: The input string.
- * @start: The starting index of the substring.
- * @len: The length of the substring.
- *
- * Return: The extracted substring.
- */
-char *ft_substr(char const *s, int start, int len)
-{
-    char *arr;
-    int i;
-    int j;
-
-    i = 0;
-    j = start;
-    if (start >= ft_strlen(s))
-        return ft_strdup("");
-    if (len > ft_strlen(s) - start)
-        len = ft_strlen(s) - start;
-    if (s[start] != '\0')
-    {
-        arr = malloc(len + 1);
-        if (!arr)
-            return NULL;
-        i = 0;
-        while (len)
-        {
-            arr[i++] = s[j++];
-            len--;
-        }
-        arr[i] = '\0';
-        return arr;
-    }
-    return NULL;
-}
-
-/**
- * strtow - Splits a string into an array of substrings based
- * on a delimiter character.
+ * count_words - Counts the number of words in a string.
  * @str: The input string.
  *
- * Return: The array of substrings.
+ * Return: The number of words.
+ */
+int count_words(char *str)
+{
+	int i, count;
+
+	i = 0;
+	count = 0;
+
+	while (str[i] != '\0')
+	{
+		if (str[i] != ' ' && (str[i + 1] == ' ' || str[i + 1] == '\0'))
+			count++;
+		i++;
+	}
+
+	return (count);
+}
+
+/**
+ * allocate_words - Allocates memory for words and copies them.
+ * @str: The input string.
+ * @words: The array of words to be filled.
+ * @count: The number of words.
+ *
+ * Return: The array of words, or NULL if memory allocation fails.
+ */
+char **allocate_words(char *str, char **words, int count)
+{
+	int i, j, k, len;
+
+	i = 0;
+	j = 0;
+
+	while (str[i] != '\0')
+	{
+		if (str[i] != ' ')
+		{
+			len = 0;
+			k = i;
+
+			while (str[k] != ' ' && str[k] != '\0')
+			{
+				len++;
+				k++;
+			}
+
+			words[j] = malloc(sizeof(char) * (len + 1));
+			if (words[j] == NULL)
+				return (NULL);
+
+			for (k = 0; k < len; k++)
+				words[j][k] = str[i++];
+
+			words[j][k] = '\0';
+			j++;
+		}
+		else
+		{
+			i++;
+		}
+	}
+
+	words[j] = NULL;
+	return (words);
+}
+
+/**
+ * strtow - Splits a string into words.
+ * @str: The input string.
+ *
+ * Return: Pointer to an array of strings (words)
+ * or NULL if str is NULL or empty.
  */
 char **strtow(char *str)
 {
-    char **arr;
-    int i = 0;
-    int j = ft_countit(str, ' ', 0);
-    int len;
+	if (str == NULL || *str == '\0')
+		return (NULL);
 
-    arr = malloc(sizeof(char *) * (j + 1));
-    if (!arr)
-        return NULL;
-    while (*str)
-    {
-        if (*str != ' ')
-        {
-            len = ft_countit(str, ' ', 1);
-            arr[i] = ft_substr(str, 0, len);
-            str += len;
-            i++;
-        }
-        else
-            str++;
-    }
-    arr[i] = NULL;
-    return arr;
+	int count = count_words(str);
+
+	char **words = malloc(sizeof(char *) * (count + 1));
+
+	if (words == NULL)
+		return (NULL);
+
+	return (allocate_words(str, words, count));
 }
