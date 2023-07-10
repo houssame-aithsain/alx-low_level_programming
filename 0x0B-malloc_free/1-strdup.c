@@ -49,6 +49,8 @@ char	*_strdup(char *str)
 	int		i;
 	char	*s_malloc;
 
+	if (!str)
+		return (NULL);
 	i = (int)ft_strlen(str);
 	s_malloc = (char *)malloc(sizeof(char) * i + 1);
 	if (!s_malloc)
