@@ -86,7 +86,7 @@ char *argstostr(int ac, char **av)
 		b = ft_strlen(arr);
 		while (i < j)
 			arr[b++] = av[in][i++];
-		arr[b] = '\n';
+		arr[b++] = '\n';
 		in++;
 	}
 	arr[b] = 0;
