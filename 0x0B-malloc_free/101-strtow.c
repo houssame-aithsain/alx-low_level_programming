@@ -16,31 +16,6 @@ int ft_strlen(const char *s)
 }
 
 /**
- * ft_strdup - Duplicates a given string.
- * @s1: The input string to be duplicated.
- *
- * Return: A pointer to the duplicated string,
- * or NULL if memory allocation fails.
- */
-char *ft_strdup(const char *s1)
-{
-	int i = 0;
-	char *s_malloc;
-	char *f_str;
-
-	f_str = (char *)s1;
-	i = ft_strlen(f_str);
-	s_malloc = (char *)malloc(sizeof(char) * (i + 1));
-	if (!s_malloc)
-		return (NULL);
-	i = -1;
-	while (++i < ft_strlen(s1))
-		s_malloc[i] = s1[i];
-	s_malloc[i] = '\0';
-	return (s_malloc);
-}
-
-/**
  * ft_countit - Counts the number of substrings in a string based
  * on a delimiter character.
  * @s: The input string.
@@ -87,8 +62,6 @@ char *ft_substr(char const *s, int start, int len)
 
 	i = 0;
 	j = start;
-	if (start >= ft_strlen(s))
-		return (ft_strdup(""));
 	if (len > ft_strlen(s) - start)
 		len = ft_strlen(s) - start;
 	if (s[start] != '\0')
@@ -122,7 +95,7 @@ char **strtow(char *str)
 	int j = ft_countit(str, ' ', 0);
 	int len;
 
-	if (!ft_strlen(str))
+	if (!ft_strlen(str) || j)
 		return (NULL);
 	arr = malloc(sizeof(char *) * (j + 1));
 	if (!arr)
