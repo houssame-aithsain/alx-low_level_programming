@@ -20,23 +20,23 @@ void	ft_bzero(void *s, size_t n)
 }
 
 /**
- * ft_calloc - Allocates memory for an array
+ * _calloc - Allocates memory for an array
  * of 'count' elements, each of 'size' bytes.
  * The allocated memory is initialized to zero.
- * @count: Number of elements to allocate.
+ * @nmemb: Number of elements to allocate.
  * @size: Size of each element in bytes.
  *
  * Return: Pointer to the allocated memory, or NULL if allocation fails.
  */
-void	*ft_calloc(size_t count, size_t size)
+void *_calloc(unsigned int nmemb, unsigned int size)
 {
 	char	*arr;
 
-	if (count == 2147483647 || size == 2147483647 || !size)
+	if (nmemb == 2147483647 || size == 2147483647 || !size)
 		return (0);
-	arr = malloc(count * size);
+	arr = malloc(nmemb * size);
 	if (!arr)
 		return (NULL);
-	ft_bzero(arr, (count * size));
+	ft_bzero(arr, (nmemb * size));
 	return (arr);
 }
