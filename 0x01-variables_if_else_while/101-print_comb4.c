@@ -1,38 +1,30 @@
 #include <stdio.h>
 
 /**
-	* main - is the main "function"
-	* @a:
-	* @i:
-	* @d:
-	* Return: it  return "0"
-*/
+ * main - is the main "function"
+ * @a:
+ * @i:
+ * @d:
+ * Return: it  return "0"
+ */
 int main(void)
 {
-	int d;
 	int i;
 	int a;
 
-	a = 0;
-	while (a < 8)
+	i = 0;
+	while (i < 99)
 	{
-		i = a + 1;
+		a = i;
 		while (i < 9)
 		{
-			d = i + 1;
-			while (d < 10)
-			{
-				putchar(a + 48);
-				putchar(i + 48);
-				putchar(d + 48);
-				if (a == 7 && i == 8 && d == 9)
-					break;
-				putchar(',');
-				putchar(' ');
-				d++;
-			}
-			i++;
+			putchar(i + 48);
+			putchar(a + 48);
+			if (a == 9 && i == 9)
+				break;
 		}
+		putchar(',');
+		putchar(' ');
 		a++;
 	}
 	putchar('\n');
