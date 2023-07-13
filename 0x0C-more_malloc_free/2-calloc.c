@@ -32,7 +32,7 @@ void *_calloc(unsigned int nmemb, unsigned int size)
 {
 	char	*arr;
 
-	if (nmemb == 2147483647 || size == 2147483647 || !size)
+	if (nmemb == 2147483647 || size == 2147483647 || !size || !nmemb)
 		return (0);
 	arr = malloc(nmemb * size);
 	if (!arr)
