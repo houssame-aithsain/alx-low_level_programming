@@ -2,7 +2,7 @@
 #define SUM_H
 
 #ifndef SUM
-#define SUM(x, y) ((x) + (x))
+#define SUM(x, y) ((x) + (y))
 #endif
 
 #endif /*SUM_H*/
