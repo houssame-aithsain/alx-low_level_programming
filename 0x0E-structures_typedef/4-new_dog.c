@@ -12,7 +12,7 @@ size_t	ft_strlen(char *s)
 	size_t	i;
 
 	i = 0;
-	while (s[i])
+	while (s && s[i])
 		i++;
 	return (i);
 }
@@ -39,29 +39,6 @@ char *_strcpy(char *dest, char *src)
 }
 
 /**
- * _strdup - Duplicates a string.
- * @str: The string to be duplicated.
- *
- * Return: If successful, a pointer to the newly allocated duplicated string.
- *         If memory allocation fails or str is NULL, returns NULL.
- */
-char	*_strdup(char *str)
-{
-	int		i;
-	char	*s_malloc;
-
-	if (!str)
-		return (NULL);
-	i = (int)ft_strlen(str);
-	s_malloc = (char *)malloc(sizeof(char) * i + 1);
-	if (!s_malloc)
-		return (NULL);
-	s_malloc = _strcpy(s_malloc, str);
-	s_malloc[i] = 0;
-	return (s_malloc);
-}
-
-/**
  * new_dog - Creates a new dog structure.
  * @name: Pointer to the name string of the dog.
  * @age: Age of the dog.
@@ -83,18 +60,20 @@ dog_t *new_dog(char *name, float age, char *owner)
 	d = malloc(sizeof(dog_t));
 	if (!d)
 		return (NULL);
-	d->name = _strdup(name);
-	d->age = age;
-	d->owner = _strdup(owner);
+	d->name = malloc(sizeof(ft_strlen(name) + 1));
 	if (!d->name)
 	{
 		free(d);
 		return (NULL);
 	}
+	d->owner = malloc(sizeof(ft_strlen(owner) + 1));
 	if (!d->owner)
 	{
 		free(d);
 		return (NULL);
 	}
+	d->name = _strcpy(d->name, name);
+	d->owner = _strcpy(d->owner, name);
+	d->age = age;
 	return (d);
 }
