@@ -6,9 +6,7 @@
 #include <stdlib.h>
 #include <string.h>
 
-int main(int ac, char *av[]);
 int (*get_op_func(char *s))(int, int);
-int _atoi(char *s);
 int op_add(int a, int b);
 int op_sub(int a, int b);
 int op_mul(int a, int b);
