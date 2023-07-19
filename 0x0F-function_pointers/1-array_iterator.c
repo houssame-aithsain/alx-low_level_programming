@@ -20,9 +20,12 @@
  */
 void array_iterator(int *array, size_t size, void (*action)(int))
 {
+	size_t i;
+
+	i = -1;
 	if (!array || !action || !size)
 		return;
 
-	for (size_t i = 0; i < size; i++)
+	while (++i < size)
 		action(array[i]);
 }
