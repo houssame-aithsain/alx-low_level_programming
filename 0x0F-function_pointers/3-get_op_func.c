@@ -20,9 +20,9 @@ int (*get_op_func(char *s))(int a, int b)
 	int i;
 
 	i = -1;
-	while (s && ++i < 5)
+	while (ops[++i].op)
 	{
-		if (!strcmp(s, ops[i].op))
+		if (*s == *(ops[i].op))
 			return (ops[i].f);
 	}
 	return (NULL);
