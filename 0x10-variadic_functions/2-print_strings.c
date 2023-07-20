@@ -1,9 +1,12 @@
 #include "variadic_functions.h"
 
 /**
- * print_strings - Prints strings, followed by a new line.
+ * print_strings - Prints strings followed by a new line.
  * @separator: The string to be printed between the strings.
  * @n: The number of strings passed to the function.
+ * @...: A variable number of string arguments.
+ *
+ * Return: Nothing.
  */
 void print_strings(const char *separator, const unsigned int n, ...)
 {
@@ -12,15 +15,17 @@ void print_strings(const char *separator, const unsigned int n, ...)
 	const char *str;
 
 	va_start(args, n);
+
 	for (i = 0; i < n; i++)
 	{
-		if (separator != NULL && i != 0)
-			printf("%s", separator);
 		str = va_arg(args, const char *);
 		if (str == NULL)
 			printf("(nil)");
 		else
 			printf("%s", str);
+
+		if (separator != NULL && i < n - 1)
+			printf("%s", separator);
 	}
 
 	va_end(args);
