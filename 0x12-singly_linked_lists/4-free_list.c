@@ -6,15 +6,15 @@
  */
 void free_list(list_t *head)
 {
-    list_t  *cnt;
-    list_t  *tmp;
+	list_t  *cnt;
+	list_t  *tmp;
 
-    cnt = head;
-    while (cnt)
-    {
-        tmp = cnt->next;
-        free(cnt->str);
-        free(cnt);
-        cnt = tmp;
-    }
+	cnt = head;
+	while (cnt)
+	{
+		tmp = cnt->next;
+		free(cnt->str);
+		free(cnt);
+		cnt = tmp;
+	}
 }
