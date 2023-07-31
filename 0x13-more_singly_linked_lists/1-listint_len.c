@@ -15,13 +15,13 @@
  */
 size_t listint_len(const listint_t *h)
 {
-	size_t len;
+	size_t lent;
 
-	len = 0;
+	lent = 0;
 	while (h)
 	{
-		len++;
+		lent++;
 		h = h->next;
 	}
-	return (len);
+	return (lent);
 }
