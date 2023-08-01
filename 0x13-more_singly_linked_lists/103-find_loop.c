@@ -10,7 +10,7 @@ listint_t *find_listint_loop(listint_t *head)
 		if (check > 0)
 			head = head->next;
 		else
-			return (head);
+			return (head->next);
 	}
 	return (NULL);
 }
