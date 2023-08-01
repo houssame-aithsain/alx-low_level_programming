@@ -1,5 +1,3 @@
-#include <stdlib.h>
-#include <stdio.h>
 #include "lists.h"
 
 /**
@@ -9,26 +7,22 @@
  */
 size_t print_listint_safe(const listint_t *head)
 {
-	size_t num = 0;
-	const listint_t *current = head;
-	const listint_t *loop_node = NULL;
+	size_t count;
+	long	check;
 
-	while (current && current != loop_node)
+	count = 0;
+	while (head)
 	{
-		printf("[%p] %d\n", (void *)current, current->n);
-		num++;
-
-		if (current >= current->next)
-		{
-			if (!loop_node)
-				loop_node = current;
-			current = current->next;
-		}
+		count++;
+		printf("[%p] %d\n", (void *)head, head->n);
+		check = head - head->next;
+		if (check > 0)
+			head = head->next;
 		else
 		{
-			current = current->next;
+			printf("-> [%p] %d\n", (void *)head->next, head->next->n);
+			break;
 		}
 	}
-
-	return (num);
+	return (count);
 }
