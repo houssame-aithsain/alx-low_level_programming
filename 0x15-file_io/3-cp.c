@@ -29,7 +29,7 @@ void print_error(char *str, char *file, int exit_code, int flag)
  */
 int main(int argc, char **argv)
 {
-	int fd_to, fd_from, rd = 1;
+	int fd_to, fd_from, rd;
 	char buffer[BUFFER_SIZE];
 
 	if (argc != 3)
@@ -43,9 +43,11 @@ int main(int argc, char **argv)
 	fd_to = open(argv[2], O_WRONLY | O_CREAT | O_TRUNC, 0664);
 	if (fd_to == -1)
 		print_error("Error: Can't write to", argv[2], 99, -1);
-	while (rd > 0)
+	while (TRUE)
 	{
 		rd = read(fd_from, buffer, BUFFER_SIZE);
+		if (!rd)
+			break;
 		if (rd == -1)
 			print_error("Error: Can't read from file", argv[1], 98, -1);
 		buffer[rd] = 0;
