@@ -11,7 +11,13 @@ int ft_print_buffer(char *buffer)
 
 	i = 0;
 	while (buffer && buffer[i])
-		write(1, &buffer[i++], 1);
+	{
+		if (write(1, &buffer[i++], 1) < 0)
+		{
+			free(buffer);
+			return (0);
+		}
+	}
 	free(buffer);
 	return (i);
 }
