@@ -10,7 +10,10 @@
 void print_error(char *str, char *file, int exit_code, int flag)
 {
 	if (!flag)
+	{
 		dprintf(STDERR_FILENO, "Error: Can't close fd %d\n", exit_code);
+		exit(100);
+	}
 	else
 	{
 		dprintf(STDERR_FILENO, "%s %s\n", str, file);
