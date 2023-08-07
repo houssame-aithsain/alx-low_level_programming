@@ -1,6 +1,28 @@
 #include "main.h"
 
 /**
+ * ft_print_buffer - Prints the contents of a buffer to the standard output.
+ * @buffer: The buffer to print.
+ * Return: The number of characters written.
+ */
+int ft_print_buffer(char *buffer)
+{
+	int i;
+
+	i = 0;
+	while (buffer && buffer[i])
+	{
+		if (write(1, &buffer[i++], 1) < 0)
+		{
+			free(buffer);
+			return (0);
+		}
+	}
+	free(buffer);
+	return (i);
+}
+
+/**
  * read_textfile - Reads and prints a specified number of letters from a file.
  * @filename: The name of the file to read.
  * @letters: The number of letters to read and print.
@@ -31,10 +53,5 @@ ssize_t read_textfile(const char *filename, size_t letters)
 	}
 	close(fd);
 	buffer[rd] = 0;
-	if (write(STDOUT_FILENO, &buffer, rd) < 0)
-	{
-		free(buffer);
-		return (0);
-	}
-	return (rd);
+	return (ft_print_buffer(buffer));
 }
