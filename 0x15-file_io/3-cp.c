@@ -30,7 +30,7 @@ void print_error(char *str, char *file, int exit_code, int flag)
 int main(int argc, char **argv)
 {
 	int fd_to, fd_from, rd;
-	char buffer[BUFFER_SIZE];
+	char buffer[BUFFER_SIZE + 1];
 
 	if (argc != 3)
 	{
@@ -55,8 +55,8 @@ int main(int argc, char **argv)
 			print_error("Error: Can't write to", argv[2], 99, -1);
 	}
 	if (close(fd_from) == -1)
-		print_error("Error: Can't close fd", NULL, fd_from, 0);
+		print_error(NULL, NULL, fd_from, 0);
 	if (close(fd_to) == -1)
-		print_error("Error: Can't close fd", NULL, fd_to, 0);
+		print_error(NULL, NULL, fd_to, 0);
 	return (0);
 }
