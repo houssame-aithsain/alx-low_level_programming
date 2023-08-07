@@ -25,11 +25,10 @@ int ft_print_buffer(char *buffer)
 ssize_t read_textfile(const char *filename, size_t letters)
 {
 	char *buffer;
-	ssize_t fd, len, rd;
+	ssize_t fd, rd;
 
 	if (!filename)
 		return (0);
-	len = 1;
 	fd = open(filename, O_RDONLY);
 	if (fd < 0)
 		return (0);
@@ -37,6 +36,7 @@ ssize_t read_textfile(const char *filename, size_t letters)
 	rd = read(fd, buffer, letters);
 	if (rd < 0)
 		return (0);
+	close(fd);
 	buffer[letters] = 0;
 	return (ft_print_buffer(buffer));
 }
