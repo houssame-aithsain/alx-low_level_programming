@@ -13,8 +13,7 @@
  */
 char generate_key(char *username)
 {
-	unsigned int i, b;
-	size_t len, add;
+	size_t len;
 	char l[] = "A-CHRDw87lNS0E9B2TibgpnMVys5XzvtOGJcYLU+4mjW6fxqZeF3Qa1rPhdKIouk";
 	char key_char;
 
