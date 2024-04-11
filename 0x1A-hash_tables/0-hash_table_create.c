@@ -8,5 +8,6 @@
 hash_table_t *hash_table_create(unsigned long int size)
 {
 	hash_table_t *hs = malloc(sizeof(hash_node_t) * size);
-	return (hs) ? hs : NULL;
+
+	return (hs ? hs : NULL);
 }
