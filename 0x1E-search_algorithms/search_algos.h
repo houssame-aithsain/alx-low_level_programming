@@ -47,5 +47,6 @@ int advanced_binary(int *array, size_t size, int value);
 int binary_search_rec(int *array, size_t left, size_t right, int value);
 void print_arrays(int *array, size_t left, size_t right);
 listint_t *jump_list(listint_t *list, size_t size, int value);
+skiplist_t *linear_skip(skiplist_t *list, int value);
 
 #endif /*SEARCH_ALGOS_H*/
