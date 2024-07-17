@@ -6,7 +6,7 @@
  * @left: The starting index of the array to print
  * @right: The ending index of the array to print
  */
-void print_array(int *array, size_t left, size_t right)
+void print_arrays(int *array, size_t left, size_t right)
 {
 	printf("Searching in array: ");
 	while (left < right)
@@ -32,7 +32,7 @@ int binary_search_rec(int *array, size_t left, size_t right, int value)
 	if (right < left)
 		return (-1);
 
-	print_array(array, left, right);
+	print_arrays(array, left, right);
 	mid = left + (right - left) / 2;
 
 	if (array[mid] == value)
