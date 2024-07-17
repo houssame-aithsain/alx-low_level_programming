@@ -1,12 +1,12 @@
 #include "search_algos.h"
 
 /**
- * print_array - print an array
+ * print_arrayx - print an array
  * @array: the array to print
  * @l: the left index
  * @r: the right index
  */
-void print_array(int *array, int l, int r)
+void print_arrayx(int *array, int l, int r)
 {
 	int i;
 
@@ -70,7 +70,7 @@ int binary_search(int *array, size_t size, int value)
 		int mid = (left + right) / 2;
 
 		printf("Searching in array: ");
-		print_array(array, left, right);
+		print_arrayx(array, left, right);
 		if (array[mid] == value)
 			return (mid);
 		if (value <= array[mid])
