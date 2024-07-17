@@ -13,6 +13,7 @@ listint_t *jump_list(listint_t *list, size_t size, int value)
 	size_t jump = sqrt(size);
 	listint_t *prev = list;
 	listint_t *current = list;
+	size_t i;
 
 	if (!list)
 		return (NULL);
@@ -21,7 +22,7 @@ listint_t *jump_list(listint_t *list, size_t size, int value)
 	while (current->next != NULL && current->index < size && current->n < value)
 	{
 		prev = current;
-		for (size_t i = 0; i < jump && current->next; i++)
+		for (i = 0; i < jump && current->next; i++)
 			current = current->next;
 		printf("Value checked at index [%lu] = [%d]\n", current->index, current->n);
 		if (current->n >= value)
